@@ -2,8 +2,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    pass
-SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:2020@localhost/profile'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:2020@localhost/profile'
 
 
 
@@ -26,3 +25,9 @@ class DevConfig(Config):
     '''
 
     DEBUG = True
+    
+    
+config_options = {
+    'development':DevConfig,
+    'production' : ProdConfig
+}
