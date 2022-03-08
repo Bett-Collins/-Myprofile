@@ -1,6 +1,4 @@
-from flask import render_template
 from . import auth
-# ....
 from flask import render_template,redirect,url_for
 from ..models import User
 from .forms import RegistrationForm
