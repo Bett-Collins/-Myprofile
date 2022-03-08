@@ -3,7 +3,7 @@ class Config:
     General configuration parent class
     '''
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:2020@localhost/profile'
-
+    SECRET_KEY = 'Flask WTF Secret Key'
 
 
 class ProdConfig(Config):
