@@ -1,4 +1,4 @@
-{% extends 'macros.html'%}
+{% extends 'base.html'%}
   {% block navbar%}
   {{super()}}
   {% endblock %}
@@ -13,7 +13,7 @@
         {% for post in item %}
 
         <article class="media content-section">
-          <img class="rounded-circle article-img" src="https://source.unsplash.com/125x125/?profile,photo" alt="">
+
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2"

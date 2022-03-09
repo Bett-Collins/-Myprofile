@@ -15,7 +15,10 @@
 {% extends 'bootstrap/base.html'%}
     <!-- Navbar block  --> 
 {% block navbar %}
-    {% include 'index.html' %}
+    {% include 'navbar.html' %}
 {% endblock %}
+{% block content%}
+{% include 'index.html'%}
+{% endblock%}
 </body>
 </html>
