@@ -1,2 +1,91 @@
-<h1>{{message}}</h1>
-<h1>APP</h1>
+{% extends 'macros.html'%}
+  {% block navbar%}
+  {{super()}}
+  {% endblock %}
+{% block content %}
+  <div class="container">
+    <h2 class=" font-bold">Latest Pitches</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <hr>
+       
+        {% for post in item %}
+
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="https://source.unsplash.com/125x125/?profile,photo" alt="">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2"
+                href="{{ url_for('.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+
+              <small class="text-muted mr-2">{{ post.posted_date.strftime('%Y-%m-%d') }}</small>
+
+              <small>Posted in: <a class="mr-2"
+                  href="{{ url_for('.category_post', category=post.category) }}">{{ post.category }}</a></small>
+
+            </div>
+            <h2><a class="article-title" href="{{ url_for('.new_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content | truncate(100) }}</p>
+          </div>
+          <p class="article-footer"><a class="ratings" href="{{ url_for('.new_comment', post_id=post.id) }}"> Leave a
+              comment</a></p>
+              <br>
+
+        </article>
+
+        <button type="submit" class="btn btn-success">
+          <a href="{{ url_for('.like_action', post_id=post.id, action='unlike') }}">Unlike</a> 
+        
+
+        </button>
+        
+        <button type="submit" class="btn btn-secondary">
+          <a href="{{ url_for('.like_action', post_id=post.id, action='like') }}">Like</a>
+          {{ post.likes.count() }} likes
+        </button>
+        <hr>
+        {% endfor %}
+        
+       
+      </div>
+
+      <div class="col-md-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages%}
+
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}">
+          {{message}}
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+        {% endwith %}
+      </div>
+
+
+      <div class="col-md-3">
+        <div class="content-section">
+          <h3>Pitch Categories</h3>
+          <p class='text-muted'>Filter based on Categories.
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-light"><a href="/post/Product%20Pitch">Product Pitch</a>
+              </li>
+              <li class="list-group-item list-group-item-light"><a href="/post/Interview%20Pitch">Interview
+                  Pitch</a>
+              </li>
+              <li class="list-group-item list-group-item-light"><a href="/post/Sales">Sales Pitch</a> </li>
+              <li class="list-group-item list-group-item-light"><a href="/post/Business%20Pitch">Business Pitch</a>
+              </li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block content%} 
+
+    
+   
+            <ul>
+              {%for comment in comments %}
+              <li>
+                  {{comment.comment}}
+              </li>
+              {%endfor %}
+           </ul>
+   
+
+{% endblock content %}

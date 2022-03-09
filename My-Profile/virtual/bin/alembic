@@ -1,4 +1,6 @@
-#!/home/moringa/Documents/My-Profile/virtual/bin/python
+#!/bin/sh
+'''exec' "/home/moringa/My-Profile fin/virtual/bin/python" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

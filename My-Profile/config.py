@@ -1,16 +1,21 @@
+import os
 class Config:
     '''
     General configuration parent class
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:2020@localhost/profile'
-    SECRET_KEY = 'Flask WTF Secret Key'
+  
+
+
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST ='app/static/photos'
-#  email configurations
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://moringa:2020@localhost/moringa'
+    #email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get("MAIL_arapbett1996@gmail.com")
-    MAIL_PASSWORD = os.environ.get("MAIL_3978737")
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+
 class ProdConfig(Config):
     '''
     Production  configuration child class
@@ -18,7 +23,12 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    pass
+   
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    # if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+            
+    #     SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://",1)
 
 
 class DevConfig(Config):
@@ -31,8 +41,7 @@ class DevConfig(Config):
 
     DEBUG = True
     
-    
 config_options = {
-    'development':DevConfig,
-    'production' : ProdConfig
+'development':DevConfig,
+'production':ProdConfig
 }
