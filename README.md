@@ -1,7 +1,7 @@
 # Myprofile
 
 ## Author
-[kiprotich Collins]
+kiprotich Collins
 # Description
 It An application that allows users to pitch ideas that could impress other people.The user is be able to submit a new pitch,comment and likes them and are able to login and sign up too.
 
